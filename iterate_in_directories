@@ -1,0 +1,18 @@
+#!/bin/bash 
+
+# save dir name in array
+dir=($(ls -d */ | sed -e "s/\///g"))
+
+# create csv and set the columns
+echo "erp_code_sol;file_name" > sol_list.csv
+# iterate in dir
+for dir_name in "${dir[@]}";do
+    #salva os nomes dos arquivos em um array
+    file=($(ls $dir_name))
+    #iterate in dir
+    for file_name in "${file[@]}";do
+        #insert dir_name;file_name in csv
+        echo "$dir_name;$file_name" >> sol_list.csv
+    done 
+done
+
