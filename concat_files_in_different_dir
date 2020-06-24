@@ -1,0 +1,23 @@
+#!/bin/bash 
+FILE=final_0.sql #if exists remove final_0
+    if [ -e "$FILE" ] ; then
+        rm $FILE
+    fi
+
+echo -n -e "\n" > 0.sql #generate 0.sql
+
+# save dir name in array
+dir=($(ls -d */ | sed -e "s/\///g"))
+
+# iterate in dir
+for dir_name in "${dir[@]}";do
+    #save file names in $file
+    file=($(ls $dir_name))
+    #iterate in dir
+    cat $dir_name/*.sql >> 0.sql # generate 0.sql
+    echo -n -e "\n" >> 0.sql # new line after iteration
+done
+
+cat *.sql > final_0.sql #inclue *.sql in this dir on final_0
+
+rm 0.sql #remove tmp 0.sql
