@@ -7,6 +7,8 @@ for file in "${files[@]}"; do
         echo "Ajustando o arquivo $file..."
         sed -i 's/^M$//' $file
         sed -i '1s/^\xEF\xBB\xBF//' $file
-        charset=$((file --mime-encoding $file | sed "s/$file charset=*//g") | sed "s/$file://g")
-        iconv -f $charset -t UTF-8 $file > $file
+        charset="$(file -bi "$file"|awk -F "=" '{print $2}')"
+        if [ "$charset" != utf-8]; then 
+                iconv -f $charset -t UTF-8 $file > $file
+        fi
 done
