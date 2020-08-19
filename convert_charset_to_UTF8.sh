@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd temppastadumparquivos/
+#extract files
+unzip $(ls -1 *.zip) && cd temppastadumparquivos/
 
 files=( *.csv ) # printa todos os arquivos de extensão ".csv"
 
@@ -26,4 +27,5 @@ for file in "${files[@]}"; do
         #echo $(file -i $file)
 done
 
+#import files to DB
 pv ../0-importar_arquivos.sql | mysql -u syntesisus -psyntesis#1#2 --default-character-set="utf8" topsapp
