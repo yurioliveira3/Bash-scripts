@@ -13,6 +13,9 @@ for file in "${files[@]}"; do
                 if [ "$CHARSET" = binary ]; then #Force if binary
                         iconv -f iso-8859-14 -t utf8//TRANSLIT "$file" -o "$file.tmp" #file.tmp is to avoid bus erros
                         mv $file.tmp $file
+                elif [ "$CHARSET" = unknown-8bit ]; then #Force if binary
+                        iconv -f iso-8859-14 -t utf8//TRANSLIT "$file" -o "$file.tmp" #file.tmp is to avoid bus erros
+                        mv $file.tmp $file                        
                 else
                         iconv -f "$CHARSET" -t utf8//TRANSLIT "$file" -o "$file.tmp" #file.tmp is to avoid bus erros
                         mv $file.tmp $file
