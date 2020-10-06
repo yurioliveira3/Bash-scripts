@@ -85,6 +85,6 @@ for _csv in ${_csv[@]}; do
         mysqlimport --local --compress --verbose --fields-enclosed-by='"' --fields-terminated-by=',' --lines-terminated-by="\n" --ignore-lines='1' --columns=$_header_columns_string -u $_db_user -p$_db_password -h$_db_host $_db $_csv_directory/$_csv
 done
 
-echo -n -e "\n\nBD: $_db created!"
+echo -n -e "\nBD: $_db created!\n"
 
 exit
