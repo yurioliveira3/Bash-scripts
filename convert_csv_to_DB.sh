@@ -73,8 +73,8 @@ for _csv in ${_csv[@]}; do
         
         # percorrer colunas de cabeçalho
         for _header in ${_header_columns[@]}; do
-        echo "Add column: $_header"
-        mysql -u $_db_user -p$_db_password -h$_db_host $_db --execute="ALTER TABLE \`$_table_name\` ADD COLUMN \`$_header\` TEXT"
+                echo "Add column: $_header"
+                mysql -u $_db_user -p$_db_password -h$_db_host $_db --execute="ALTER TABLE \`$_table_name\` ADD COLUMN \`$_header\` TEXT"
         done
 
         # remove coluna temporária
