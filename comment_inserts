@@ -1,0 +1,13 @@
+#!/bin/bash
+#verify the backup before run this script, if it has a text/plain
+
+#vector with table names
+tables=(radius_acct radius_acct_arquivado radius_check radius_postauth log_system log cep)
+
+#iterate in 
+for table in ${tables[@]}; do
+    #echo "sed -i s/INSERT INTO \`$table\`/--INSERT INTO \`$table\`/g test.sql;"
+    sed -i "s/INSERT INTO \`$table\`/--INSERT INTO \`$table\`/g" backup.sql;
+done 
+
+exit
